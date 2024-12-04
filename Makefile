@@ -19,3 +19,8 @@ req:
 	poetry export --without-hashes --format=requirements.txt > requirements.txt
 check:
 	ruff check .
+up:
+	docker-compose up --build
+down:
+	docker-compose down -v
+
