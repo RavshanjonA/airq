@@ -13,8 +13,8 @@ class CurrentSerializer(ModelSerializer):
 
 # for response
 class CoordSerializer(Serializer):
-    lat = IntegerField()
-    lon = IntegerField()
+    lat = FloatField()
+    lon = FloatField()
 
 
 class AqiSerializer(Serializer):
