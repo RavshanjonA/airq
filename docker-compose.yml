@@ -1,11 +1,30 @@
 services:
-  app:
-    build: .
+  web_service:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
     volumes:
-      - .:/app
+      - static_volume:/app/static
+      - media_volume:/app/media
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/nginx/Dockerfile
     ports:
-      - 80:8000
-    container_name: django-container
-    command: >
-      sh -c "python manage.py migrate &&  
-      python manage.py runserver 0.0.0.0:8000"
+      - '443:443'
+    depends_on:
+      - web_service
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+
+
+volumes:
+  media_volume:
+  static_volume:
+  postgres_data:
+  redis_data:

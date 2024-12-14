@@ -8,3 +8,4 @@ drf-yasg==1.21.8
 facebook-sdk==3.1.0
 google-api-python-client==2.154.0
 python-dotenv==1.0.1
+redis==5.2.0
